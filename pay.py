@@ -23,7 +23,6 @@ class check:
 
 
 st.header("결제 확인 시스템")
-st.write(print(pd.__version__))
 
 uploaded_file1 = st.file_uploader("설문지 파일을 선택해주세요")
 if uploaded_file1 is not None:
