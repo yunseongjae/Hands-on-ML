@@ -1,13 +1,5 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
-import calendar
-import plotly.express as px
-from datetime import datetime
-import pickle
-from abc import *
-import plotly.graph_objects as go
-from dateutil.relativedelta import relativedelta
 
 class check:
     def processing_survey(file_name):
@@ -31,7 +23,7 @@ class check:
 
 
 st.header("결제 확인 시스템")
-
+st.write(print(pd.__version__))
 
 uploaded_file1 = st.file_uploader("설문지 파일을 선택해주세요")
 if uploaded_file1 is not None:
