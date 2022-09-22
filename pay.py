@@ -23,14 +23,15 @@ class check:
 
 
 st.header("결제 확인 시스템")
-
+file_path = st.text_input("경로를 붙여넣어주세요", "C:/")
 uploaded_file1 = st.file_uploader("설문지 파일을 선택해주세요")
+
 if uploaded_file1 is not None:
-    a, a_copy = check.processing_survey(file_name = uploaded_file1.name)
+    a, a_copy = check.processing_survey(file_name = file_path+uploaded_file1.name)
 
 uploaded_file2 = st.file_uploader("페이플 파일을 선택해주세요")
 if uploaded_file2 is not None:
-    b = check.processing_payple(file_name = uploaded_file2.name)
+    b = check.processing_payple(file_name = file_path+uploaded_file2.name)
 
 if uploaded_file1 is not None and uploaded_file2 is not None:
     df_total = pd.merge(left =a, right  = b, on = 'key', how = 'left')
