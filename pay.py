@@ -38,15 +38,16 @@ if uploaded_file1 is not None and uploaded_file2 is not None:
     df_total['결제여부'] = ~(df_total['이름_y'].isnull())
     df_result = df_total[df_total['결제여부'] == False][['이름_x', '번호_x']]
     df_result.columns = ['이름', '번호']
-
+    df_result = df_result.drop_duplicates()
+    a_copy = a_copy.drop_duplicates()
     df_total_result = pd.merge(
     left = a_copy, right = df_result,
     left_on = a_copy['번호'].apply(lambda x: str(x)[-4:]), right_on = '번호', how = 'left')
-    df_total_result['번호_x'] = df_total_result['번호_x'].apply(lambda x: '0'+str(x))
+    df_total_result['번호_x'] = df_total_result['번호_x'].apply(lambda x: str(x))
     df_total_result = df_total_result[['이름_x', '번호_x', '이름_y']]
     df_total_result['이름_y'] = df_total_result['이름_y'].isnull()
     df_total_result.columns = ['이름', '번호', '결제여부']
-
+    df_total_result.drop_duplicates(subset = ['이름', '번호'])
     st.subheader('미결제자 명단입니다.')
     st.write(df_total_result)
 # st.table(df_total[df_total['결제여부'] == False][['이름_x', '번호_x']])
